@@ -1,18 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <script>
-        function jha2(){
-            var txt = "1 \
-            2";
-            navigator.clipboard.writeText(txt);
+      function jha2() {
+        const txt = `// HH:MM:SS
+import java.util.Scanner;
+
+public class TimeConverter {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the time in seconds: ");
+        int totalSeconds = input.nextInt();
+        input.close();
+
+        int hours = totalSeconds / 3600;
+        int remainingSeconds = totalSeconds % 3600;
+        int minutes = remainingSeconds / 60;
+        int seconds = remainingSeconds % 60;
+
+        String formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        System.out.println("Time in HH:MM:SS format: " + formattedTime);
+    }
+}
+
+// Rearrange odd even
+public class RearrangeArray {
+    public static void main(String[] args) {
+        int[] arr = {12, 34, 45, 9, 8, 90, 3};
+        
+        rearrangeArray(arr);
+        
+        System.out.print("Rearranged Array: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
         }
+    }
+    
+    public static void rearrangeArray(int[] arr) {
+        int left = 0;        // Pointer for odd numbers
+        int right = arr.length - 1;  // Pointer for even numbers
+        
+        while (left < right) {
+            while (arr[left] % 2 != 0 && left < right) {
+                left++;
+            }
+            
+            while (arr[right] % 2 == 0 && left < right) {
+                right--;
+            }
+            
+            if (left < right) {
+                // Swap arr[left] and arr[right]
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+            }
+        }
+    }
+}
+
+// accept 3 integers .. rightmost digits
+import java.util.Scanner;
+
+public class SameRightmostDigit {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the first integer: ");
+        int num1 = scanner.nextInt();
+        
+        System.out.print("Enter the second integer: ");
+        int num2 = scanner.nextInt();
+        
+        System.out.print("Enter the third integer: ");
+        int num3 = scanner.nextInt();
+        
+        scanner.close();
+        
+        boolean result = hasSameRightmostDigit(num1, num2, num3);
+        System.out.println("Two or more integers have the same rightmost digit: " + result);
+    }
+    
+    public static boolean hasSameRightmostDigit(int num1, int num2, int num3) {
+        int lastDigit1 = num1 % 10;
+        int lastDigit2 = num2 % 10;
+        int lastDigit3 = num3 % 10;
+        
+        return (lastDigit1 == lastDigit2) || (lastDigit1 == lastDigit3) || (lastDigit2 == lastDigit3);
+    }
+}
+
+// Complex number
+import java.io.DataInputStream;
+import java.io.IOException;
+class Practical4
+{
+public static void main(String args[])
+{
+Complex c1=new Complex(23,43);
+Complex c2=new Complex(332,412);
+System.out.println("First Complex number: "+c1.display());
+System.out.println("Second Complex number: "+c2.display());
+c1.add(c2);
+System.out.println("Addition of Complex number:"+c1.display());
+c1.sub(c2);
+System.out.println("Substraction of Complex number:"+c1.display());
+}
+}
+class Complex
+{
+private int real;
+private int imaginary;
+public Complex(int r,int i)
+{
+real=r;
+imaginary=i;
+}
+public int getReal()
+{
+return real;
+}
+public int getImaginary()
+{
+return imaginary;
+}
+public String display()
+{
+return ""+real+"+i"+imaginary;
+}
+public void add(Complex c)
+{
+this.real=this.real+c.getReal();
+this.imaginary=this.imaginary+c.getImaginary();
+}
+public void sub(Complex c)
+{
+this.real=this.real-c.getReal();
+this.imaginary=this.imaginary-c.getImaginary();
+}
+}
+
+// Design a address
+class Address {
+    private String num;
+    private String city;
+    private String state;
+    private String country;
+
+    public Address(String num, String city, String state, String country) {
+        this.num = num;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+    }
+
+    public String getAddress() {
+        return num + ", " + city + ", " + state + ", " + country;
+    }
+}
+
+class Student {
+    private String USN;
+    private String name;
+    private Address address;
+
+    public Student(String USN, String name, Address address) {
+        this.USN = USN;
+        this.name = name;
+        this.address = address;
+    }
+
+    public void printCollege() {
+        System.out.println("Student Name: " + name);
+        System.out.println("College Address: " + address.getAddress());
+    }
+}
+
+class Employee {
+    private String employeeID;
+    private String name;
+    private Address address;
+
+    public Employee(String employeeID, String name, Address address) {
+        this.employeeID = employeeID;
+        this.name = name;
+        this.address = address;
+    }
+
+    public void printEmployeeDetails() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Employee Address: " + address.getAddress());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Address collegeAddress = new Address("123 Main St", "Sample City", "Sample State", "Sample Country");
+        Address employeeAddress = new Address("456 Elm St", "Another City", "Another State", "Another Country");
+
+        Student student = new Student("123456", "Alice", collegeAddress);
+        Employee employee = new Employee("EMP123", "Bob", employeeAddress);
+
+        student.printCollege();
+        System.out.println();
+        employee.printEmployeeDetails();
+    }
+}
+
+// Applet
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+
+public class FactorialApplet extends Applet {
+    TextField inputField, outputField;
+    Button computeButton;
+
+    public void init() {
+        Label inputLabel = new Label("Enter an integer:");
+        Label outputLabel = new Label("Factorial Value:");
+
+        inputField = new TextField(10);
+        outputField = new TextField(10);
+        outputField.setEditable(false);
+
+        computeButton = new Button("Compute");
+        computeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                calculateFactorial();
+            }
+        });
+
+        add(inputLabel);
+        add(inputField);
+        add(outputLabel);
+        add(outputField);
+        add(computeButton);
+    }
+
+    private void calculateFactorial() {
+        try {
+            int num = Integer.parseInt(inputField.getText());
+            if (num < 0) {
+                outputField.setText("Invalid input (negative number)");
+            } else {
+                long factorial = 1;
+                for (int i = 1; i <= num; i++) {
+                    factorial *= i;
+                }
+                outputField.setText(Long.toString(factorial));
+            }
+        } catch (NumberFormatException e) {
+            outputField.setText("Invalid input (not an integer)");
+        }
+    }
+}
+
+// + - * /
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.Applet;
+
+public class SimpleCalculator extends Applet implements ActionListener {
+    TextField display;
+    double num1, num2, result;
+    String operator;
+
+    public void init() {
+        setLayout(new BorderLayout());
+
+        display = new TextField(10);
+        display.setEditable(false);
+        add(display, BorderLayout.NORTH);
+
+        Panel buttonPanel = new Panel();
+        buttonPanel.setLayout(new GridLayout(4, 4));
+
+        String[] buttonLabels = {
+            "7", "8", "9", "/",
+            "4", "5", "6", "*",
+            "1", "2", "3", "-",
+            "C", "0", "=", "+"
+        };
+
+        for (String label : buttonLabels) {
+            Button button = new Button(label);
+            button.addActionListener(this);
+            buttonPanel.add(button);
+        }
+
+        add(buttonPanel, BorderLayout.CENTER);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if (Character.isDigit(command.charAt(0)) || command.equals(".")) {
+            display.setText(display.getText() + command);
+        } else if (command.equals("C")) {
+            display.setText("");
+            num1 = num2 = result = 0;
+            operator = null;
+        } else if (command.equals("=")) {
+            try {
+                num2 = Double.parseDouble(display.getText());
+                if (operator != null) {
+                    switch (operator) {
+                        case "+":
+                            result = num1 + num2;
+                            break;
+                        case "-":
+                            result = num1 - num2;
+                            break;
+                        case "*":
+                            result = num1 * num2;
+                            break;
+                        case "/":
+                            if (num2 == 0) {
+                                display.setText("Error: Division by zero");
+                                return;
+                            }
+                            result = num1 / num2;
+                            break;
+                    }
+                }
+                display.setText(Double.toString(result));
+                num1 = result;
+                operator = null;
+            } catch (NumberFormatException ex) {
+                display.setText("Error");
+            }
+        } else {
+            if (operator != null) {
+                actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "="));
+                num1 = result;
+            } else {
+                num1 = Double.parseDouble(display.getText());
+            }
+            operator = command;
+            display.setText("");
+        }
+    }
+}
+
+// Num1 Num2 divide button
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class DivisionCalculator extends JFrame implements ActionListener {
+    private JTextField num1TextField;
+    private JTextField num2TextField;
+    private JTextField resultTextField;
+    private JButton divideButton;
+
+    public DivisionCalculator() {
+        setTitle("Integer Division Calculator");
+        setLayout(new FlowLayout());
+
+        num1TextField = new JTextField(10);
+        num2TextField = new JTextField(10);
+        resultTextField = new JTextField(10);
+        resultTextField.setEditable(false);
+        divideButton = new JButton("Divide");
+
+        add(new JLabel("Num1: "));
+        add(num1TextField);
+        add(new JLabel("Num2: "));
+        add(num2TextField);
+        add(divideButton);
+        add(new JLabel("Result: "));
+        add(resultTextField);
+
+        divideButton.addActionListener(this);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 150);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            int num1 = Integer.parseInt(num1TextField.getText());
+            int num2 = Integer.parseInt(num2TextField.getText());
+
+            if (num2 == 0) {
+                throw new ArithmeticException("Division by zero is not allowed.");
+            }
+
+            int result = num1 / num2;
+            resultTextField.setText(String.valueOf(result));
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Invalid input. Please enter valid integers.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ArithmeticException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new DivisionCalculator());
+    }
+}
+
+//Multithreading
+import java.util.Random;
+
+public class MultiThreadExample {
+    public static void main(String[] args) {
+        Random rand = new Random();
+
+        Thread generatorThread = new Thread(() -> {
+            while (true) {
+                int randomNum = rand.nextInt(100);
+                System.out.println("Generated: " + randomNum);
+                if (randomNum % 2 == 0) {
+                    squareThread.setNumber(randomNum);
+                } else {
+                    cubeThread.setNumber(randomNum);
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread squareThread = new Thread(() -> {
+            int number;
+            while (true) {
+                if ((number = getNumber()) != -1) {
+                    System.out.println("Square: " + number * number);
+                }
+            }
+        });
+
+        Thread cubeThread = new Thread(() -> {
+            int number;
+            while (true) {
+                if ((number = getNumber()) != -1) {
+                    System.out.println("Cube: " + number * number * number);
+                }
+            }
+        });
+
+        generatorThread.start();
+        squareThread.start();
+        cubeThread.start();
+    }
+
+    private static int number = -1;
+
+    synchronized static int getNumber() {
+        return number;
+    }
+
+    synchronized static void setNumber(int num) {
+        number = num;
+    }
+}
+
+// Given Shape
+abstract class Shape {
+    abstract void printArea();
+}
+
+class Rectangle extends Shape {
+    private int length;
+    private int width;
+
+    public Rectangle(int length, int width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    void printArea() {
+        int area = length * width;
+        System.out.println("Area of Rectangle: " + area);
+    }
+}
+
+class Triangle extends Shape {
+    private int base;
+    private int height;
+
+    public Triangle(int base, int height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    @Override
+    void printArea() {
+        double area = 0.5 * base * height;
+        System.out.println("Area of Triangle: " + area);
+    }
+}
+
+class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    void printArea() {
+        double area = Math.PI * radius * radius;
+        System.out.println("Area of Circle: " + area);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape rectangle = new Rectangle(5, 10);
+        Shape triangle = new Triangle(4, 8);
+        Shape circle = new Circle(3.5);
+
+        rectangle.printArea();
+        triangle.printArea();
+        circle.printArea();
+    }
+}
+
+// Doubly linked list
+class Node {
+    int data;
+    Node next;
+    Node prev;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class DoublyLinkedList {
+    private Node head;
+
+    public void insert(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        }
+    }
+
+    public void delete(int key) {
+        Node current = head;
+
+        while (current != null) {
+            if (current.data == key) {
+                if (current.prev != null) {
+                    current.prev.next = current.next;
+                } else {
+                    head = current.next;
+                }
+
+                if (current.next != null) {
+                    current.next.prev = current.prev;
+                }
+
+                return;
+            }
+            current = current.next;
+        }
+    }
+
+    public void display() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+public class DoublyLinkedListExample {
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        list.insert(5);
+
+        System.out.println("Original Doubly Linked List:");
+        list.display();
+
+        int keyToDelete = 3;
+        list.delete(keyToDelete);
+        System.out.println("Doubly Linked List after deleting " + keyToDelete + ":");
+        list.display();
+    }
+}
+
+// Quick Sort
+import java.util.Arrays;
+
+public class QuickSortNames {
+    public static void main(String[] args) {
+        String[] names = {"Alice", "Bob", "Eve", "Charlie", "David"};
+
+        quickSort(names, 0, names.length - 1);
+
+        System.out.println("Sorted Names: " + Arrays.toString(names));
+    }
+
+    public static void quickSort(String[] arr, int low, int high) {
+        if (low < high) {
+            int partitionIndex = partition(arr, low, high);
+
+            quickSort(arr, low, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, high);
+        }
+    }
+
+    public static int partition(String[] arr, int low, int high) {
+        String pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (arr[j].compareTo(pivot) <= 0) {
+                i++;
+
+                String temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        String temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1;
+    }
+}`;
+        navigator.clipboard.writeText(txt);
+      }
     </script>
-</head>
-<body onload="jha2()">
-</body>
+  </head>
+  <body onload="jha2()">
+    <h1 style="text-align: center">[ DONE ]</h1>
+    <h3 style="text-align: center">Kaushal bhaiyya jindabad</h3>
+  </body>
 </html>
